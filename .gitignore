@@ -1,6 +1,9 @@
-# Data/object files
-*.dat
+# Object files
 *.o
+
+# Data
+*.dat
+*.m~
 
 # Programs
 run

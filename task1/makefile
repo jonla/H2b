@@ -4,7 +4,7 @@ CFLAGS = -O3 -Wall
 LIBS = -lm
 
 HEADERS =
-OBJECTS = main.o
+OBJECTS = func.o main.o
 PROGRAM = run
 
 %.o: %.c $(HEADERS)
