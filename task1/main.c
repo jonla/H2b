@@ -15,24 +15,24 @@ int main() {
     int nbr_accept;
     double delta, q, r;
     double alpha;
+    double energy;
     double R[6], Rt[6];
-    FILE *file_R;
+    FILE *file_R, *file_E;
 
     // Initialize random seed
     srand(time(NULL));
 
-
     // Set parameters
-    N = pow(10,5);
+    N = 5*pow(10,5);
     alpha = 0.1;
-    delta = 1.8;
+    delta = 1;
     for (i=0; i<3; i++) {
         R[i] = 1;
-        Rt[i] = -1;
+        R[i+3] = -1;
     }
-    //estimate = integrand(x);
 
     file_R = fopen("position.dat","w");
+    file_E = fopen("energy.dat","w");
     nbr_accept = 0;
     for (i=0; i<N; i++) {
         draw(Rt, R, delta);
@@ -46,16 +46,21 @@ int main() {
             }
         }
 
+        // Calculate local energy
+        energy = local_energy(R, alpha);
+
         // Print to file
         for (j=0; j<6; j++) {
             fprintf(file_R,"%e \t", R[j]);
         }
         fprintf(file_R,"\n");
+        fprintf(file_E,"%e \n", energy);
 
     }
 
     printf("Accept ratio: %e \n", (double)nbr_accept/(double)N);
     fclose(file_R);
+    fclose(file_E);
 }
 
 
