@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 
 
 
-data = np.loadtxt('alpha_energy.dat')
+data = np.loadtxt('alpha_energy_indie.dat')
 
 xaxis = np.arange(0.05, 0.25, 0.01)
 

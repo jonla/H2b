@@ -10,7 +10,7 @@
 int main() {
 
     /* Declare variables */
-    int i, j, k;
+    int i, j, k, n;
     int N;
     int nbr_accept;
     double delta, q, r;
@@ -25,39 +25,45 @@ int main() {
     srand(time(NULL));
 
     // Set parameters
-    N = 5*pow(10,5);
+    N = pow(10,5);
     alpha = 0.05;
     delta = 1;
-    for (i=0; i<3; i++) {
-        R[i] = 1;
-        R[i+3] = -1;
-    }
+
 
     for (k=0; k < 20; k++)
     {
+        printf("alpha value currently at %f\n", alpha);
         energy = 0;
         nbr_accept = 0;
-        for (i=0; i<N; i++) {
-            draw(Rt, R, delta);
-            q = accept_ratio(R, Rt, alpha);
-            r = (double)rand()/(double)RAND_MAX;
-            if (r < q) {
-                // Accept
-                nbr_accept += 1;
-                for (j=0; j<6; j++) {
-                    R[j] = Rt[j];
+        for (n=0; n < 10; n++)
+        {
+            for (i=0; i<3; i++) {
+                R[i] = 2*((double)rand()/(double)RAND_MAX -0.5);
+                R[i+3] = 2*((double)rand()/(double)RAND_MAX -0.5);
+            }
+            for (i=0; i<N; i++) {
+                draw(Rt, R, delta);
+                q = accept_ratio(R, Rt, alpha);
+                r = (double)rand()/(double)RAND_MAX;
+                if (r < q) {
+                    // Accept
+                    nbr_accept += 1;
+                    for (j=0; j<6; j++) {
+                        R[j] = Rt[j];
+                    }
+                }
+                // Calculate local energy
+                if (i > 1000) {
+                    energy += local_energy(R, alpha);
                 }
             }
-            // Calculate local energy
-            energy += local_energy(R, alpha);
-
         }
-        alpha_energy[k] = energy / (double) N;
+        alpha_energy[k] = energy / (double) (10*(N-1000));
         alpha += 0.01;
     }
 
 
-    file_E = fopen("alpha_energy.dat","w");
+    file_E = fopen("alpha_energy_indie.dat","w");
     // Print to file
     for (k=0; k<20; k++) {
         fprintf(file_E,"%e \n", alpha_energy[k]);
