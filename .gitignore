@@ -1,9 +1,11 @@
 # Object files
 *.o
+*.pyc
 
 # Data
 *.dat
 *.m~
 
 # Programs
+*.exe
 run

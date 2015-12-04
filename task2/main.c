@@ -16,7 +16,6 @@ int main() {
     int nbr_accept;
     double delta, q, r;
     double alpha;
-    double energy;
     double xvar, s;
     double R[6], Rt[6];
     FILE *file_R, *file_E, *file_B;
@@ -26,15 +25,16 @@ int main() {
 
     // Set parameters
     N = 5*pow(10,5);
-    B_max = 500;
+    B_max = 1000;
     alpha = 0.1;
     delta = 1;
     for (i=0; i<3; i++) {
-        R[i] = 1;
-        R[i+3] = -1;
+        R[i] = 0.5;
+        R[i+3] = -0.5;
     }
 
     double *Rx = malloc(N*sizeof(double));
+    double *energy = malloc(N*sizeof(double));
 
     file_R = fopen("position.dat","w");
     file_E = fopen("energy.dat","w");
@@ -53,14 +53,14 @@ int main() {
         Rx[i] = R[0];
 
         // Calculate local energy
-        energy = local_energy(R, alpha);
+        energy[i] = local_energy(R, alpha);
 
         // Print to file
         for (j=0; j<6; j++) {
             fprintf(file_R,"%e \t", R[j]);
         }
         fprintf(file_R,"\n");
-        fprintf(file_E,"%e \n", energy);
+        fprintf(file_E,"%e \n", energy[i]);
 
     }
 
