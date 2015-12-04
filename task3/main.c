@@ -17,7 +17,6 @@ int main() {
     double alpha;
     double energy;
     double alpha_energy[20];
-    double xvar, s;
     double R[6], Rt[6];
     FILE *file_E;
 
@@ -25,7 +24,7 @@ int main() {
     srand(time(NULL));
 
     // Set parameters
-    N = 5*pow(10,5);
+    N = 5*pow(10,7);
     alpha = 0.05;
     delta = 1;
     for (i=0; i<3; i++) {
