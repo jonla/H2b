@@ -49,7 +49,7 @@ double d_log_wave(double R[6], double alpha) {
         r12 += (R[i]-R[i+3])*(R[i]-R[i+3]);
     }
 
-    return -r12*r12*2.0*pow(1+alpha*r12,-2.0);
+    return -r12*r12*pow(1+alpha*r12,-2.0) / 2.0;
 }
 
 double accept_ratio(double R[6], double Rt[6], double alpha) {

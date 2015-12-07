@@ -1,14 +1,15 @@
 clc, clf
 % Var(E_loc) = 0.1367
-% N = 10^7
 % s = 40
-% -> Effective sampling size = N/s
-N = 10^7; s = 40;
-energy = importdata('alpha_energy.dat');
+% -> Effective sampling size = N*N_simul/s
+N = 10^6; s = 40; N_simul = 20;
+std_div = sqrt(0.1367/(N*N_simul/s));
+energy = importdata('alpha_energy_indie.dat');
 alpha = linspace(0.05,0.24,20);
-errBar = sqrt(0.1367/(N/s))*ones(size(energy));
+errBar = std_div*ones(size(energy));
 errorbar(alpha,energy,errBar,'linewidth',3)
-xlabel('Alpha')
-ylabel('Energy')
+set(gca,'fontsize',20)
+xlabel('$\alpha$','interpret','latex')
+ylabel('$E_0$ (a.u.)','interpret','latex')
 xlim([min(alpha) max(alpha)])
 grid on

@@ -29,8 +29,8 @@ int main() {
     alpha = 0.1;
     delta = 1;
     for (i=0; i<3; i++) {
-        R[i] = 0.5;
-        R[i+3] = -0.5;
+        R[i] = (double)rand()/(double)RAND_MAX-0.5;
+        R[i+3] = (double)rand()/(double)RAND_MAX-0.5;
     }
 
     double *Rx = malloc(N*sizeof(double));
@@ -78,6 +78,7 @@ int main() {
     fclose(file_B);
 
     free(Rx), Rx = NULL;
+    free(energy), energy = NULL;
 }
 
 

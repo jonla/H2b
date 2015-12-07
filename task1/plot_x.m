@@ -14,9 +14,10 @@ hold on
 set(gca,'fontsize',20)
 plot(r,P_teo,'linewidth',3)
 plot(r,count/(N*dr),'xk','markersize',10,'linewidth',3)
-h = legend('No interaction','$\alpha=0.1$');
+%h = legend('No interaction','$\alpha=0.1$');
+h = legend('$2^5r^2\exp{[-4r]}$','Samples, $\alpha=0.1$');
 set(h,'interpret','latex')
-xlabel('$r$','interpret','latex')
+xlabel('$r$ (a.u)','interpret','latex')
 ylabel('Probability','interpret','latex')
 grid on
 xlim([0 3])

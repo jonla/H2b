@@ -11,7 +11,7 @@ int main() {
 
     /* Declare variables */
     int i, j, k, n;
-    int N;
+    int N, N_eq, N_simul;
     int nbr_accept;
     double delta, q, r;
     double alpha;
@@ -25,6 +25,8 @@ int main() {
 
     // Set parameters
     N = pow(10,6);
+    N_eq = 1000;
+    N_simul = 20;
     alpha = 0.05;
     delta = 1;
 
@@ -34,13 +36,13 @@ int main() {
         printf("alpha value currently at %f\n", alpha);
         energy = 0;
         nbr_accept = 0;
-        for (n=0; n < 10; n++)
+        for (n=0; n < N_simul; n++)
         {
             for (i=0; i<3; i++) {
                 R[i] = 2*((double)rand()/(double)RAND_MAX -0.5);
                 R[i+3] = 2*((double)rand()/(double)RAND_MAX -0.5);
             }
-            for (i=0; i<N; i++) {
+            for (i=0; i<N+N_eq; i++) {
                 draw(Rt, R, delta);
                 q = accept_ratio(R, Rt, alpha);
                 r = (double)rand()/(double)RAND_MAX;
@@ -52,12 +54,12 @@ int main() {
                     }
                 }
                 // Calculate local energy
-                if (i > 1000) {
+                if (i > N_eq) {
                     energy += local_energy(R, alpha);
                 }
             }
         }
-        alpha_energy[k] = energy / (double) (10*(N-1000));
+        alpha_energy[k] = energy / (double) (N_simul*N);
         alpha += 0.01;
     }
 
