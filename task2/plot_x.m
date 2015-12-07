@@ -7,17 +7,36 @@ energy = importdata('energy.dat');
 block_avg = importdata('block_avg.dat');
 clear data;
 %%
+plot(energy,'linewidth',3)
+set(gca,'fontsize',20)
+grid on
+xlabel('Iteration','interpret','latex')
+ylabel('Local energy (a.u.)','interpret','latex')
+xlim([0 1000])
+%%
 clc, clf
 taumax = 200;
 %[aco, lags] = xcorr(energy,taumax,'unbiased');
 [aco, lags] = autocorr(R1(:,1),taumax);
-plot(lags,aco/max(aco))
+subplot(2,1,1)
+hold on
+plot(lags,aco/max(aco),'linewidth',3)
+line([0 200],[exp(-2) exp(-2)])
+annotation('textarrow',[0.55 0.45],[0.80 0.70], ...
+  'string','$\Phi \approx 0.135 \Rightarrow \; s\approx 40$', ...
+  'fontsize',20,'interpret','latex')
+hold off
+set(gca,'fontsize',20)
 grid on
-xlabel('Iterations')
-ylabel('Auto correlation')
-%%
-clc, clf
-plot(block_avg)
-xlabel('Block size')
-ylabel('s')
+xlabel('Iterations','interpret','latex')
+ylabel('Auto correlation $\Phi$','interpret','latex')
+ylim([-0.1 1])
+xlim([0 100])
+
+subplot(2,1,2)
+plot(block_avg,'linewidth',3)
+set(gca,'fontsize',20)
+xlabel('Block size','interpret','latex')
+ylabel('$s$','interpret','latex')
+ylim([0 45])
 grid on

@@ -5,6 +5,7 @@
 # Data
 *.dat
 *.m~
+*.eps
 
 # Programs
 *.exe
