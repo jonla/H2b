@@ -1,9 +1,9 @@
 clc, clf
-% Var(E_loc) = 0.1367
+% Var(E_loc) = 0.135
 % s = 40
 % -> Effective sampling size = N*N_simul/s
 N = 10^6; s = 40; N_simul = 20;
-std_div = sqrt(0.1367/(N*N_simul/s));
+std_div = sqrt(0.135/(N*N_simul/s));
 energy = importdata('alpha_energy_indie.dat');
 alpha = linspace(0.05,0.24,20);
 errBar = std_div*ones(size(energy));

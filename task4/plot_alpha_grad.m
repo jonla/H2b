@@ -10,6 +10,7 @@ plot(alpha,'linewidth',3)
 set(gca,'fontsize',20)
 xlabel('Iteration','interpret','latex')
 ylabel('$\alpha$','interpret','latex')
+ylim([0.09 0.18])
 grid on
 
 subplot(2,1,2)

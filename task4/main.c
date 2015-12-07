@@ -30,7 +30,7 @@ int main() {
     srand(time(NULL));
 
     // Set parameters
-    N = pow(10,5);
+    N = pow(10,4);
     N_eq = 1000;
     N_simul = 100;
     alpha = 0.14;
