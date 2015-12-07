@@ -24,7 +24,7 @@ int main() {
     srand(time(NULL));
 
     // Set parameters
-    N = pow(10,5);
+    N = pow(10,6);
     alpha = 0.05;
     delta = 1;
 
