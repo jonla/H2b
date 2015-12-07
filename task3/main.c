@@ -24,9 +24,9 @@ int main() {
     srand(time(NULL));
 
     // Set parameters
-    N = pow(10,5);
+    N = pow(10,6);
     N_eq = 1000;
-    N_simul = 10;
+    N_simul = 20;
     alpha = 0.05;
     delta = 1;
 
@@ -59,7 +59,7 @@ int main() {
                 }
             }
         }
-        alpha_energy[k] = energy / (double) (N_simul*(N));
+        alpha_energy[k] = energy / (double) (N_simul*N);
         alpha += 0.01;
     }
 
