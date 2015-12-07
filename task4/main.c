@@ -30,13 +30,13 @@ int main() {
     srand(time(NULL));
 
     // Set parameters
-    N = pow(10,4);
+    N = pow(10,5);
     N_eq = 1000;
     N_simul = 100;
     alpha = 0.1;
     delta = 1;
     A = 1;
-    beta = 0.5;
+    beta = 0.75;
 
 
     for (k=0; k < N_alpha; k++)
@@ -74,11 +74,9 @@ int main() {
         energy = energy / (double)(N*N_simul);
         deriv_log_wave = deriv_log_wave / (double) (N*N_simul);
         E_deriv_log_wave = E_deriv_log_wave / (double) (N*N_simul);
-        grad_E = 2*(E_deriv_log_wave - energy*deriv_log_wave);
+        grad_E = 2.0*(E_deriv_log_wave - energy*deriv_log_wave);
         gamma = A*pow((double)(k+1),-beta);
-        gamma = 0.1;
         alpha += -gamma*grad_E;
-
         alpha_energy[k] = energy;
         printf("Energy: %f \n", energy);
     }

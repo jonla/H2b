@@ -41,17 +41,6 @@ double log_wavefun(double R[6], double alpha) {
     return -2*(r1+r2) + r12/(2+2*alpha*r12);
 }
 
-double d_log_wave(double R[6], double alpha) {
-    int i;
-    double r12 = 0;
-
-    for (i=0; i<3; i++) {
-        r12 += (R[i]-R[i+3])*(R[i]-R[i+3]);
-    }
-
-    return -r12*r12*pow(1.0+alpha*r12,-2.0) / 2.0;
-}
-
 double accept_ratio(double R[6], double Rt[6], double alpha) {
     return exp(2*log_wavefun(Rt, alpha) - 2*log_wavefun(R, alpha));
 }
@@ -64,7 +53,7 @@ void draw(double *Rt, double R[6], double delta) {
     }
 }
 
-double block_var(double *data, int nbr_lines, int B) {
+double block_s(double *data, int nbr_lines, int B) {
     int i,j;
     int NB;
     double xbarB, x2barB, Bvar;
