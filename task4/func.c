@@ -48,6 +48,7 @@ double d_log_wave(double R[6], double alpha) {
     for (i=0; i<3; i++) {
         r12 += (R[i]-R[i+3])*(R[i]-R[i+3]);
     }
+    r12 = sqrt(r12);
 
     return -r12*r12*pow(1.0+alpha*r12,-2.0) / 2.0;
 }

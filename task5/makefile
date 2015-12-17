@@ -1,7 +1,7 @@
 
 CC = gcc
 CFLAGS = -O3 -Wall
-LIBS = -lm
+LIBS = -lm -lgsl -lgslcblas
 
 HEADERS =
 OBJECTS = func.o main.o

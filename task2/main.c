@@ -33,7 +33,6 @@ int main() {
         R[i+3] = (double)rand()/(double)RAND_MAX-0.5;
     }
 
-    double *Rx = malloc(N*sizeof(double));
     double *energy = malloc(N*sizeof(double));
 
     file_R = fopen("position.dat","w");
@@ -50,7 +49,6 @@ int main() {
                 R[j] = Rt[j];
             }
         }
-        Rx[i] = R[0];
 
         // Calculate local energy
         energy[i] = local_energy(R, alpha);
@@ -69,15 +67,14 @@ int main() {
     fclose(file_E);
 
     file_B = fopen("block_avg.dat","w");
-    xvar = block_var(Rx, N, 1);
+    xvar = block_var(energy, N, 1);
     fprintf(file_B,"%e \n", 1.0);
     for (i=2; i<B_max; i++) {
-        s = i*block_var(Rx, N, i)/xvar;
+        s = i*block_var(energy, N, i)/xvar;
         fprintf(file_B,"%e \n", s);
     }
     fclose(file_B);
 
-    free(Rx), Rx = NULL;
     free(energy), energy = NULL;
 }
 
